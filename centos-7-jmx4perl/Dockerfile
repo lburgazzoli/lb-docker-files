@@ -1,4 +1,10 @@
+
+############################################################
+# CentOS 7 / Jmx4Perl
+############################################################
+
 FROM lburgazzoli/centos-7
+MAINTAINER lburgazzoli
 
 RUN \
     yum -y install \
