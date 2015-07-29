@@ -27,7 +27,7 @@ RUN \
         Term::ReadLine::Gnu \
         JMX::Jmx4Perl \
     && yum -y remove \
-        gcc
+        gcc \
         readline-devel \
         ncurses-devel \
         libxml2-devel \
