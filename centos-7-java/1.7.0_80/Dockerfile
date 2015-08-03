@@ -2,11 +2,8 @@
 # CentOS 7 / Java 1.7_80
 ############################################################
 
-FROM lburgazzoli/centos-7
+FROM lburgazzoli/centos-7:latest
 MAINTAINER lburgazzoli
-
-#ENV http_proxy http://172.17.42.1:8128
-#ENV https_proxy http://172.17.42.1:8128
 
 ENV JAVA_VERSION_MAJOR 7
 ENV JAVA_VERSION_MINOR 80

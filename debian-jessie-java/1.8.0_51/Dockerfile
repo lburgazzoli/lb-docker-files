@@ -2,7 +2,7 @@
 # CentOS 7 / Java 1.8.0_51
 ############################################################
 
-FROM lburgazzoli/centos-7:latest
+FROM lburgazzoli/debian-jessie:latest
 MAINTAINER lburgazzoli
 
 ENV JAVA_VERSION_MAJOR 8
