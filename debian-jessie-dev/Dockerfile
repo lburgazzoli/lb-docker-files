@@ -7,5 +7,7 @@ MAINTAINER lburgazzoli
 
 RUN \
     apt-get install --no-install-recommends -y \
-        build-essential \
+        gcc \
+        g++ \
+        make \
     && rm -rf /var/lib/apt/lists/*
