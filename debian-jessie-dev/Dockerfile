@@ -7,5 +7,5 @@ MAINTAINER lburgazzoli
 
 RUN \
     apt-get install --no-install-recommends -y \
-        build-essential
+        build-essential \
     && rm -rf /var/lib/apt/lists/*
