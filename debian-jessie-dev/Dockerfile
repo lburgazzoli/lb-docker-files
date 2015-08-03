@@ -10,5 +10,5 @@ RUN \
     && apt-get install --no-install-recommends -y \
         gcc \
         g++ \
-        gmake \
+        make \
     && rm -rf /var/lib/apt/lists/*
