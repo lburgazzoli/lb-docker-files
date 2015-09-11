@@ -33,6 +33,8 @@ RUN \
     && apt-get install --force-yes -y \
         spotify-client \
     && rm -rf /var/lib/apt/lists/*
+    && echo "QLineEdit { color: #000 }" > /home/${DOCKER_USER}/spotify-override.css
 
 WORKDIR $DOCKER_HOME
 USER $DOCKER_USER
+
