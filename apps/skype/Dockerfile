@@ -2,8 +2,8 @@
 FROM lburgazzoli/debian-jessie
 MAINTAINER lburgazzoli
 
-#ENV http_proxy      http://172.17.42.1:8128
-#ENV https_proxy     http://172.17.42.1:8128
+ENV http_proxy      http://172.17.42.1:8128
+ENV https_proxy     http://172.17.42.1:8128
 ENV DOCKER_HOME     /home/user
 ENV DOCKER_USER     user
 ENV DEBIAN_FRONTEND noninteractive
@@ -23,7 +23,9 @@ RUN \
     && dpkg --add-architecture i386 \ 
     && apt-get update \
     && apt-get install -y --no-install-recommends \
-        curl \            
+        curl \
+        gtk2-engines-murrine \
+        gtk2-engines-pixbuf \
     && curl http://download.skype.com/linux/skype-debian_${SKYPE_VERSION}_i386.deb > /usr/src/skype.deb \
     && dpkg --force-depends -i /usr/src/skype.deb \
     && apt-get install -fy \
