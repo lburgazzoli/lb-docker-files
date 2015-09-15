@@ -2,8 +2,8 @@
 FROM lburgazzoli/debian-jessie
 MAINTAINER lburgazzoli
 
-ENV http_proxy      http://172.17.42.1:8128
-ENV https_proxy     http://172.17.42.1:8128
+#ENV http_proxy      http://172.17.42.1:8128
+#ENV https_proxy     http://172.17.42.1:8128
 ENV DOCKER_HOME     /home/user
 ENV DOCKER_USER     user
 ENV DEBIAN_FRONTEND noninteractive
