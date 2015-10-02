@@ -26,6 +26,7 @@ RUN \
         curl \
         gtk2-engines-murrine \
         gtk2-engines-pixbuf \
+        fonts-droid \
     && curl http://download.skype.com/linux/skype-debian_${SKYPE_VERSION}_i386.deb > /usr/src/skype.deb \
     && dpkg --force-depends -i /usr/src/skype.deb \
     && apt-get install -fy \
