@@ -8,6 +8,9 @@ ENV DOCKER_HOME     /home/user
 ENV DOCKER_USER     user
 ENV DEBIAN_FRONTEND noninteractive
 ENV APP_VERSION     1.2.4
+ENV LC_ALL          en_US.UTF-8
+ENV LANG            en_US.UTF-8
+ENV HOME            ${DOCKER_HOME}
 
 RUN \
     groupadd \
@@ -36,15 +39,20 @@ RUN \
         libxss1 \
         libgl1-mesa-dri \
         libgl1-mesa-glx \
-        python \
+        python-minimal \
         gvfs-bin \
         xdg-utils \
+        ca-certificates \
         apt-transport-https \
         fonts-droid \
         fonts-roboto \
-    && curl -s https://slack-ssb-updates.global.ssl.fastly.net/linux_releases/slack-desktop-${APP_VERSION}-amd64.deb -o /tmp/slack.deb \
+        locales \
+    && echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen \
+    && locale-gen en_US.utf8 \
+    && /usr/sbin/update-locale LANG=en_US.UTF-8 \
+    && curl -sSL https://slack-ssb-updates.global.ssl.fastly.net/linux_releases/slack-desktop-${APP_VERSION}-amd64.deb > /tmp/slack.deb \
     && dpkg -i /tmp/slack.deb \
-    && rm -f /tmp/slack.deb \
+    && rm -rf /tmp/slack.deb \
     && rm -rf /var/lib/apt/lists/*
 
 WORKDIR $DOCKER_HOME
