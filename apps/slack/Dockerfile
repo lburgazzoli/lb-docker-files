@@ -34,6 +34,8 @@ RUN \
         libnss3 \
         libasound2 \
         libxss1 \
+        libgl1-mesa-dri \
+        libgl1-mesa-glx \
         python \
         gvfs-bin \
         xdg-utils \
