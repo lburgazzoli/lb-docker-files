@@ -15,7 +15,6 @@ RUN apt-get update \
         file \
     && mkdir -p $RUST_HOME \
     && curl -sSf https://static.rust-lang.org/rustup.sh | sh -s -- \
-        --channel=stable \
         --revision=$RUST_VERSION \
         --prefix=$RUST_HOME \
         --disable-sudo \
