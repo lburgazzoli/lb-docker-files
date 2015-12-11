@@ -6,6 +6,7 @@ FROM lburgazzoli/debian-jessie
 MAINTAINER lburgazzoli
 
 RUN apt-get update \
+    && apt-get upgrade -y \
     && apt-get install -y --no-install-recommends \
         ca-certificates \
         software-properties-common \
