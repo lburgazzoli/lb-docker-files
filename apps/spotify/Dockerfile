@@ -1,5 +1,5 @@
 
-FROM lburgazzoli/ubuntu:15.10
+FROM ubuntu:15.10
 MAINTAINER lburgazzoli
 
 ARG DOCKER_USER_GID

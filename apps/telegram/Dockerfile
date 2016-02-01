@@ -1,5 +1,5 @@
 
-FROM lburgazzoli/ubuntu:15.10
+FROM ubuntu:15.10
 MAINTAINER lburgazzoli
 
 ARG DOCKER_USER_GID
@@ -22,6 +22,10 @@ RUN \
     && mkdir /opt/telegram \    
     && apt-get update \
     && apt-get install -y --no-install-recommends \
+        ca-certificates \
+        software-properties-common \
+        unzip \
+        wget \
         curl \
         xz-utils \
         libx11-6 \

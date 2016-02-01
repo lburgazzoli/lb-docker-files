@@ -1,5 +1,5 @@
 
-FROM lburgazzoli/ubuntu:15.10
+FROM ubuntu:15.10
 MAINTAINER lburgazzoli
 
 
@@ -21,11 +21,9 @@ RUN \
         --groups audio,video \
         --shell /usr/sbin/nologin \
         $DOCKER_USER \
-    && wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - \
-    && echo "deb http://dl.google.com/linux/chrome/deb/ stable main" > /etc/apt/sources.list.d/google.list \
-    && echo "deb http://dl.google.com/linux/talkplugin/deb/ stable main" >> /etc/apt/sources.list.d/google.list \
     && apt-get update \
     && apt-get install -y --no-install-recommends \
+        wget \
         software-properties-common \
         libappindicator1 \
         libasound2 \
@@ -50,6 +48,11 @@ RUN \
         hicolor-icon-theme \
         gtk2-engines-murrine \
         gtk2-engines-pixbuf \
+    && wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - \
+    && echo "deb http://dl.google.com/linux/chrome/deb/ stable main" > /etc/apt/sources.list.d/google.list \
+    && echo "deb http://dl.google.com/linux/talkplugin/deb/ stable main" >> /etc/apt/sources.list.d/google.list \
+    && apt-get update \
+    && apt-get install -y --no-install-recommends \
         google-chrome-stable \
         google-talkplugin \
     && rm -rf /var/lib/apt/lists/*

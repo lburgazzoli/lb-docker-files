@@ -1,5 +1,5 @@
 
-FROM lburgazzoli/ubuntu:15.10
+FROM ubuntu:15.10
 MAINTAINER lburgazzoli
 
 ARG DOCKER_USER_GID
@@ -19,6 +19,10 @@ RUN \
         --gid $DOCKER_USER_UID \
         --shell /usr/sbin/nologin \
         $DOCKER_USER \
+    && apt-get update \
+    && apt-get install -y --no-install-recommends \
+        ca-certificates \
+        software-properties-common \
     && dpkg --add-architecture i386 \ 
     && add-apt-repository "deb http://archive.canonical.com/ wily partner" \
     && apt-get update \
