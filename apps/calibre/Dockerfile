@@ -1,12 +1,12 @@
 
-FROM lburgazzoli/ubuntu:15.10
+FROM lburgazzoli/ubuntu-ui:15.10
 MAINTAINER lburgazzoli
 
 ARG DOCKER_USER_GID
 ARG DOCKER_USER_UID
 
 ENV DOCKER_USER_HOME /home/user
-ENV DOCKER_USER user
+ENV DOCKER_USER      user
 
 RUN \
     groupadd \
@@ -21,9 +21,6 @@ RUN \
         $DOCKER_USER \
     && apt-get update \
     && apt-get install -y --no-install-recommends \
-        gtk2-engines-murrine \
-        gtk2-engines-pixbuf \
-        fonts-droid \
         calibre \
     && rm -rf /var/lib/apt/lists/*
 

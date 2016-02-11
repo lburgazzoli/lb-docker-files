@@ -1,12 +1,12 @@
 
-FROM ubuntu:15.10
+FROM lburgazzoli/ubuntu-ui:15.10
 MAINTAINER lburgazzoli
 
 ARG DOCKER_USER_GID
 ARG DOCKER_USER_UID
 
 ENV DOCKER_USER_HOME /home/user
-ENV DOCKER_USER user
+ENV DOCKER_USER      user
 
 RUN \
     groupadd \
@@ -19,17 +19,10 @@ RUN \
         --gid $DOCKER_USER_UID \
         --shell /usr/sbin/nologin \
         $DOCKER_USER \
-    && apt-get update \
-    && apt-get install -y --no-install-recommends \
-        ca-certificates \
-        software-properties-common \
-    && dpkg --add-architecture i386 \ 
+    && dpkg --add-architecture i386 \
     && add-apt-repository "deb http://archive.canonical.com/ wily partner" \
     && apt-get update \
     && apt-get install -y --no-install-recommends \
-        gtk2-engines-murrine \
-        gtk2-engines-pixbuf \
-        fonts-droid \
         skype \
     && rm -rf /var/lib/apt/lists/*
 

@@ -1,13 +1,13 @@
 
-FROM ubuntu:15.10
+FROM lburgazzoli/ubuntu-ui:15.10
 MAINTAINER lburgazzoli
 
 
 ARG DOCKER_USER_GID
 ARG DOCKER_USER_UID
 
-ENV DOCKER_USER_HOME     /home/user
-ENV DOCKER_USER     user
+ENV DOCKER_USER_HOME /home/user
+ENV DOCKER_USER      user
 
 RUN \
     groupadd \
@@ -23,8 +23,6 @@ RUN \
         $DOCKER_USER \
     && apt-get update \
     && apt-get install -y --no-install-recommends \
-        wget \
-        software-properties-common \
         libappindicator1 \
         libasound2 \
         libcanberra-gtk-module \
@@ -41,13 +39,9 @@ RUN \
         libxtst6 \
         wget \
         xdg-utils \
-        ca-certificates \
         fonts-liberation \
-        fonts-droid \
         gconf-service \
         hicolor-icon-theme \
-        gtk2-engines-murrine \
-        gtk2-engines-pixbuf \
     && wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - \
     && echo "deb http://dl.google.com/linux/chrome/deb/ stable main" > /etc/apt/sources.list.d/google.list \
     && echo "deb http://dl.google.com/linux/talkplugin/deb/ stable main" >> /etc/apt/sources.list.d/google.list \

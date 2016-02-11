@@ -1,12 +1,12 @@
 
-FROM ubuntu:15.10
+FROM lburgazzoli/ubuntu-ui:15.10
 MAINTAINER lburgazzoli
 
 ARG DOCKER_USER_GID
 ARG DOCKER_USER_UID
 
-ENV DOCKER_USER_HOME     /home/user
-ENV DOCKER_USER     user
+ENV DOCKER_USER_HOME /home/user
+ENV DOCKER_USER      user
 
 RUN \
     groupadd \
@@ -22,9 +22,8 @@ RUN \
         $DOCKER_USER \
     && apt-get update \
     && apt-get install -y --no-install-recommends \
-        libpangoxft-1.0-0 \            
+        libpangoxft-1.0-0 \
         alsa-utils \
-        software-properties-common \
         libgcrypt20-dev \
         xdg-utils \
         libxss1 \
@@ -39,4 +38,3 @@ RUN \
 
 WORKDIR $DOCKER_USER_HOME
 USER $DOCKER_USER
-

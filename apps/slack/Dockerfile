@@ -1,5 +1,5 @@
 
-FROM lburgazzoli/ubuntu:15.10
+FROM lburgazzoli/ubuntu-ui:15.10
 MAINTAINER lburgazzoli
 
 ARG DOCKER_USER_GID
@@ -25,11 +25,10 @@ RUN \
         $DOCKER_USER \
     && apt-get update \
     && apt-get install -y --no-install-recommends \
-        curl \
-        gconf2 \ 
-        gconf-service \ 
+        gconf2 \
+        gconf-service \
         hunspell-en-us \
-        libgtk2.0-0 \ 
+        libgtk2.0-0 \
         libudev1 \
         libgcrypt20 \
         libnotify4 \
@@ -42,10 +41,7 @@ RUN \
         python \
         gvfs-bin \
         xdg-utils \
-        ca-certificates \
         apt-transport-https \
-        fonts-droid \
-        fonts-roboto \
         locales \
     && echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen \
     && locale-gen en_US.utf8 \

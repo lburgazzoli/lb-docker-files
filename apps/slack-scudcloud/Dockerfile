@@ -1,5 +1,5 @@
 
-FROM lburgazzoli/ubuntu:15.10
+FROM lburgazzoli/ubuntu-ui:15.10
 MAINTAINER lburgazzoli
 
 ARG DOCKER_USER_GID
@@ -28,8 +28,6 @@ RUN \
     && apt-get install -y --no-install-recommends \
         scudcloud \
         hunspell-en-us \
-        fonts-droid \
-        fonts-roboto \
         locales \
     && rm -rf /var/lib/apt/lists/*
 
