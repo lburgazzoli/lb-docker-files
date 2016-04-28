@@ -2,9 +2,10 @@
 FROM lburgazzoli/ubuntu-ui:16.04
 MAINTAINER lburgazzoli
 
-
 ARG DOCKER_USER_GID
 ARG DOCKER_USER_UID
+ARG APP_VERSION
+ARG APP_NAME
 
 ENV DOCKER_USER_HOME /home/user
 ENV DOCKER_USER      user
@@ -42,16 +43,10 @@ RUN \
         fonts-liberation \
         gconf-service \
         hicolor-icon-theme \
-    && wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - \
-    && echo "deb http://dl.google.com/linux/chrome/deb/ stable main" > /etc/apt/sources.list.d/google.list \
-    && echo "deb http://dl.google.com/linux/talkplugin/deb/ stable main" >> /etc/apt/sources.list.d/google.list \
-    && apt-get update \
-    && apt-get install -y --no-install-recommends \
-        google-chrome-stable \
-        google-talkplugin \
+    && wget https://downloads.vivaldi.com/stable/vivaldi-stable_${APP_VERSION}_amd64.deb -q -O /tmp/vivaldi.deb \
+    && dpkg -i /tmp/vivaldi.deb \
+    && rm -f /tmp/vivaldi.deb \
     && rm -rf /var/lib/apt/lists/*
-
-COPY local.conf /etc/fonts/local.conf
 
 WORKDIR $DOCKER_USER_HOME
 USER $DOCKER_USER
