@@ -8,7 +8,7 @@ before_install:
   - sudo apt-get remove --purge docker
   - sudo apt-get autoremove --purge
   - sudo apt-get install docker-engine
-  - sudo /etc/init.d/docker start
+  - sudo service docker start
   - uname -a
   - docker version
 script: |
