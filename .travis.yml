@@ -1,7 +1,5 @@
 sudo: required
 before_install:
-  - sudo apt-cache search docker
-  - sudo apt-cache search lxc
   - sudo apt-get install -y --no-install-recommends apt-transport-https ca-certificates
   - sudo apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
   - echo "deb https://apt.dockerproject.org/repo ubuntu-precise main" | sudo tee /etc/apt/sources.list.d/docker.list
@@ -11,12 +9,12 @@ before_install:
   - sudo apt-get autoremove --purge
   - sudo apt-get install docker-engine
   - sudo service docker stop
-  - sleep 10
   - sudo service docker start
   - uname -a
   - sudo docker version
 script: |
-  cd apps/atom-rpmbuild && docker build \
+  cd apps/atom-rpmbuild 
+  sudo docker build \
     --tag="lburgazzoli/atom-rpm-build" \
     --build-arg BINTRAY_USER=$BINTRAY_USER \
     --build-arg BINTRAY_APIKEY=$BINTRAY_APIKEY \
