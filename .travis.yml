@@ -5,6 +5,7 @@ services:
 before_install:
   - docker version
 script: |
+  env
   cd apps/atom-rpmbuild && docker build \
     --tag="lburgazzoli/atom-rpm-build" \
     --build-arg BINTRAY_USER=$BINTRAY_USER \
