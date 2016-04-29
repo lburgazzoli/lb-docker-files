@@ -5,11 +5,14 @@
 FROM fedora:23
 MAINTAINER lburgazzoli
 
-RUN mkdir /tmp/docker
+ARG BINTRAY_USER
+ARG BINTRAY_APIKEY
+ARG BINTRAY_REPO
 
-VOLUME /tmp/docker /tmp/docker
+COPY upload.sh /tmp/upload.sh
 
-RUN dnf --assumeyes update \
+RUN \
+    dnf --assumeyes update \
     && dnf --assumeyes install \
         make \
         curl \
@@ -27,7 +30,7 @@ RUN dnf --assumeyes update \
     && git clone https://github.com/atom/atom \
     && cd atom \
     && git fetch -p \
-    && git checkout (git describe --tags `git rev-list --tags --max-count=10` | grep -v \-) \
+    && git checkout $(git describe --tags `git rev-list --tags --max-count=10` | grep -v \-) \
     && script/build \
-    && find out -name "atom*.rpm" -type f -exec cp {} \; /tmp/docker \
-    && dnf --assumeyes clean all
+    && script/grunt mkrpm \
+    && /tmp/upload.sh
