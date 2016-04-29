@@ -2,8 +2,15 @@ sudo: required
 
 services:
   - docker
-script:
-  - apps/atom-rpmbuild/build-travis.sh
+before_install:
+  - docker version
+script: |
+    cd apps/atom-rpmbuild && docker build \
+      -tag="lburgazzoli/app-atom-build" 
+      --build-arg BINTRAY_USER=$BINTRAY_USER \
+      --build-arg BINTRAY_APIKEY=$BINTRAY_APIKEY \
+      --build-arg BINTRAY_REPO="rpm" \
+      .
 env:
   global:
     - secure: UJrkHV8uB7FOPXDgqiAhHiIELuOl2NydX/l57IGGfrvPiEmnAfGdIvW2TE+NyPNWVSNAFZf/l1bNucy4FndXvIfYOPqbG9q1EjYxYmXOWrIbZ08Iz2wF82CpEngnc5LCqBKrtZ5rOEbiDuEJfSI/KuFTGeuyTySYxcNUMPdBbz3pANlAC0f/NveZfRO6AGIpnSEdDLpwgNS5DW3+w5X9mMFmHype849E49lL3HsDKIZ8hyi2yBwZimyhTQOKdsUllWjesC26z8CyLgVPxCVc9CjKMGv4QQkViPocB3BQI6v5nuEYliP4QMZHUaVt6E0mWq3RBG7BuWqXRtGGRzFZv7NeUpZB/WUC7EQxy4ropvdepU31Gv/r46eataVn3kpWahz2O7NvE0pC57DJ6mIP3WWx6SUtpcHcpnhIIqugJmtJU3o8lf6ErK3mFOLBrx07NF2UaKqwKyTLrwAQR5YOnfn32FSTEKGcko0ee+d//XZ0LkYgf6IUeV9rA9hx92R8tZJPejkp30m2PMR1j4D8iycvTHyG/poUyc+xTHAIrQ1z445oKaa5iH5xTX2smrMjaaQCGONvc8haVb1Q1juSGGqUmmLVlJCggDfzRRA17mFUyft8FwPriUDw8068GCpJwIH/2ATnDq9h7aurZPadeAZh2NVmZdAwKuVo5x+H2c4=
