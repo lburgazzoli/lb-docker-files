@@ -9,7 +9,9 @@ RUN mkdir /tmp/docker
 
 VOLUME /tmp/docker /tmp/docker
 
-RUN dnf  --assumeyes installmake \
+RUN dnf --assumeyes update \
+    && dnf --assumeyes install \
+        make \
         curl \
         unzip \
         wget \
@@ -25,7 +27,7 @@ RUN dnf  --assumeyes installmake \
     && git clone https://github.com/atom/atom \
     && cd atom \
     && git fetch -p \
-    && git checkout v1.7.3 \
+    && git checkout (git describe --tags `git rev-list --tags --max-count=10` | grep -v \-) \
     && script/build \
     && find out -name "atom*.rpm" -type f -exec cp {} \; /tmp/docker \
     && dnf --assumeyes clean all
