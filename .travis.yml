@@ -1,5 +1,8 @@
 sudo: required
-
+addons:
+  apt:
+    packages:
+    - docker-engine
 services:
   - docker
 before_install:
