@@ -1,6 +1,6 @@
 #!/bin/sh
 
-RPMS_DIR=out
+RPMS_DIR=/atom/out/rpm
 BASE_DESC=https://github.com/lburgazzoli/lb-docker
 
 for RPM_FILE in $RPMS_DIR/*.rpm; do
