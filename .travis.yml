@@ -14,7 +14,7 @@ before_install:
   - sleep 10
   - sudo service docker start
   - uname -a
-  - docker version
+  - sudo docker version
 script: |
   cd apps/atom-rpmbuild && docker build \
     --tag="lburgazzoli/atom-rpm-build" \
