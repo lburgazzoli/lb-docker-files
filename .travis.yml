@@ -1,12 +1,12 @@
 sudo: required
 before_install:
-  - sudo apt-get install -y --no-install-recommends apt-transport-https ca-certificates
-  - sudo apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
-  - echo "deb https://apt.dockerproject.org/repo ubuntu-precise main" | sudo tee /etc/apt/sources.list.d/docker.list
-  - sudo apt-get update
-  - sudo apt-get install docker-engine
-  - sudo service docker restart
-  - sudo docker version
+- sudo apt-get install -y --no-install-recommends apt-transport-https ca-certificates
+- sudo apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
+- echo "deb https://apt.dockerproject.org/repo ubuntu-precise main" | sudo tee /etc/apt/sources.list.d/docker.list
+- sudo apt-get update
+- sudo apt-get install docker-engine
+- sudo service docker restart
+- sudo docker version
 script: |
   cd apps/atom-rpmbuild && sudo docker build \
     --tag="lburgazzoli/atom-rpm-build" \
@@ -16,6 +16,5 @@ script: |
     .
 env:
   global:
-    - secure: UJrkHV8uB7FOPXDgqiAhHiIELuOl2NydX/l57IGGfrvPiEmnAfGdIvW2TE+NyPNWVSNAFZf/l1bNucy4FndXvIfYOPqbG9q1EjYxYmXOWrIbZ08Iz2wF82CpEngnc5LCqBKrtZ5rOEbiDuEJfSI/KuFTGeuyTySYxcNUMPdBbz3pANlAC0f/NveZfRO6AGIpnSEdDLpwgNS5DW3+w5X9mMFmHype849E49lL3HsDKIZ8hyi2yBwZimyhTQOKdsUllWjesC26z8CyLgVPxCVc9CjKMGv4QQkViPocB3BQI6v5nuEYliP4QMZHUaVt6E0mWq3RBG7BuWqXRtGGRzFZv7NeUpZB/WUC7EQxy4ropvdepU31Gv/r46eataVn3kpWahz2O7NvE0pC57DJ6mIP3WWx6SUtpcHcpnhIIqugJmtJU3o8lf6ErK3mFOLBrx07NF2UaKqwKyTLrwAQR5YOnfn32FSTEKGcko0ee+d//XZ0LkYgf6IUeV9rA9hx92R8tZJPejkp30m2PMR1j4D8iycvTHyG/poUyc+xTHAIrQ1z445oKaa5iH5xTX2smrMjaaQCGONvc8haVb1Q1juSGGqUmmLVlJCggDfzRRA17mFUyft8FwPriUDw8068GCpJwIH/2ATnDq9h7aurZPadeAZh2NVmZdAwKuVo5x+H2c4=
-    - secure: KuqJGuB/G+E9xeNpHlF++3toTUOQrNrmFbvMP1vu8VgUh4e0ug3/mCrGrQ7crYmfxZYTWAW+OCrubxzOaWpBnOp3QclGaDsAMLgtDnFWmmG6S7ScPXxOz/W7D1cXBovUrAakY5BUWH6xjcG/ecc5y2Ial4sn5JH5CyM3YUwIf1HMn1r73VIfi3gn6rKqz91Wu/Y6v1bu0QvfPHuK2JRHE+JdM1uhSHr1GCnqMGo0H4JUFfkDODF1ZdKSMpieI9oeEOYn+GUbQy1lDL3i7DepUb9jCzG3eb+SwMFRl0xr0DxqpaMFq/lsI7a+ea+YjR1izsz73XF0K24Z/4tHG8u/q65dXDHYfkLqjZ68DPCyht/MMvBQGk/t9x51ICKKyjPA4SI2WQOzGfcapGgYRn6YhQP3MOQOLTDMQ3sMEdnx0rzy9dQLJq4aB0n/GmGRzb8nGdWLXJ7aNMGCzcNndSlDzmvgEshwZO8BlRfUCnrqSDKOi7qsK3R+y9pm5uiNmhy3c7EV3cr5RtpO6YRxMTwXQsFSDhBdHh4A+waqilrVupAXCtcoqfx6fVAsxO+TlkHeDZHb8Pp9Ykpeuo7UMVi6EL6QOCuI6LGB7yJNQzzDWs5ngTBzT5x6fJTXc6PY6jiZOS8oxr8L3QATuTdl5fLwcIBplFtpXpTB021+l7SPpJU=
-
+  - secure: nDZV0s4m/G7bopbstH5ovuV2yPMBQcfrPdz9Z3ApV+MXYqTocktpMvF9yILsrLacS+kPfBNSrCW9QbQvXuqWmuRWtEaPPD2cuHP060V3KgAtU3KysTpmsrVYseYN8ZEn91TFlQs5DOAAlsn1KCL3+7nEiecongqNYT6JQUx1/J1gqe+s4MAjqZzL3ww0fulKveFMvfIveUwv1fA0YkLMje9pOSmO6M9ma4mDJutB/ktp6AMPwAcE+9aPOlUW8G6bKyacm0wNzpoMPbOcjbmmaKi1hwdIN4iLItMNohxwuAA4pUB5Ssej+XlLeqwlqF2UbTtZsOGds8LgBP6j61U01RSK0c1Y8HOAZTESp4OZkovFsbuIYkMWcasi5Q82S3a4RuB2RngOhpzplTfENvQsJrAN66AXp9nPnVYbA8aouC2Whu/pNhM4jE/5vhj32UxRiBFZmPTRsxR1C0T/wFep8VXyn9JKdX1IAjslJtMsmCeV5knANOhpDXmJkIcRsbeB7/nC0Nw45/hoArkdAEfXftPH/qKqQwg/OXFjjJ55avnrcZbVMgKqA9P1DhWj1QbB51yMjMm6zBRcvAex/As5CYFOibfjd0dIWSoUbdS6MlFYYonCJ3XWXL6pVtDCkM5RImL+MSjkN6jnCYJV+strw0/Bss3uCTg076P88rTWiTI=
+  - secure: hS04AfQMZtcMy6IbHAh/Tby+dyl52MlHcvWqVLY6EhGtA21hYr5qEIntbvqRAzQo/ufTSyLX+HzBogz82HI5/3XQGtlt7TA4KBRMcafKDTCFJU6vqaCukIBHWPwv0/ZmW1YN0CwY/SJTlIXfX8EXtHqiLszBsYki758TKKJEFv3WAbQgcdrwXtcAKC/XJ9H2FS4p20p56byVYIDb9t9cvtsEeXpsyAyhbFd5cBt8iBnlyq+X89uRxLvz4Gb4y9gFoTc2Y6j3+DL720aLRIpu3yaGVScRNBh+paO+w8bUg/15K3ufNDC6LJ4zLANtreXLSfo+f/MbXU2+bORaspuWsYh9IYkJTpudmbTpIIY/xzRoKMS4qD4ARkSX8vOHV45B82LDjvLpUyYtdrrKvEKrXuekiE7XaodgNSAS7s5gRIvWjyYVtvhx6i4wGKD8j4WECqTf+VptM9dBRhTJiMLUdSS+SuDK5WQOtaB/YvL+3Ob+duc78XzcFDnU4/wWq69QoaS3CToQ5GTMASpgRLt0lgyLwlx9vRAQAs9MxZAwAPGbK9ACIOuDegZiboPomgxca7ulFKNewpOrXsXo3pDKu9OGTuxGAPqwlphR4ONllGlXwcE1ExRw+SHZB3x3INXA37ZTda6b1naJ3ER8QZFXaWH6NEWRfSxnCcFZaiVNrE8=

@@ -9,8 +9,6 @@ ARG BINTRAY_USER
 ARG BINTRAY_APIKEY
 ARG BINTRAY_REPO
 
-COPY upload.sh /tmp/upload.sh
-
 RUN \
     dnf --assumeyes update \
     && dnf --assumeyes install \
@@ -32,5 +30,4 @@ RUN \
     && git fetch -p \
     && git checkout $(git describe --tags `git rev-list --tags --max-count=10` | grep -v \-) \
     && script/build \
-    && script/grunt mkrpm \
-    && /tmp/upload.sh
+    && script/grunt mkrpm
