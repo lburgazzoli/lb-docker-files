@@ -1,5 +1,5 @@
 
-FROM alpine:3.3
+FROM alpine:3.4
 MAINTAINER lburgazzoli
 
 RUN apk add --update acf-squid
