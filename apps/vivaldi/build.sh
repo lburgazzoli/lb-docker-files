@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 APP_NAME=$(basename $PWD)
-APP_VERSION="1.1.453.47-1"
+APP_VERSION="1.2.490.39-1"
 
 sudo docker build \
     --tag="lburgazzoli/app-$APP_NAME" \
