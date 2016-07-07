@@ -1,16 +1,16 @@
 
-FROM lburgazzoli/ubuntu-ui:15.10
+FROM lburgazzoli/ubuntu-ui:16.04
 MAINTAINER lburgazzoli
 
+ARG DOCKER_USER
 ARG DOCKER_USER_GID
 ARG DOCKER_USER_UID
 ARG APP_VERSION
 
-ENV DOCKER_USER_HOME    /home/user
-ENV DOCKER_USER         user
-ENV LC_ALL              en_US.UTF-8
-ENV LANG                en_US.UTF-8
-ENV HOME                ${DOCKER_USER_HOME}
+ENV DOCKER_USER_HOME /home/${DOCKER_USER}
+ENV LC_ALL           en_US.UTF-8
+ENV LANG             en_US.UTF-8
+ENV HOME             ${DOCKER_USER_HOME}
 
 RUN \
     groupadd \
