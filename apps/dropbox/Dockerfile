@@ -36,6 +36,7 @@ RUN \
         qt5-default \
     && wget -O - "https://www.dropbox.com/download?plat=lnx.x86_64" \
         | tar xzf - --directory=$HOME \
+    && wget -O $HOME/.dropbox-dist/dropbox.py "https://www.dropbox.com/download?dl=packages/dropbox.py" \
     && chown -R $DOCKER_USER:$DOCKER_USER $HOME/.dropbox-dist \ 
     && rm -rf /var/lib/apt/lists/*
 
