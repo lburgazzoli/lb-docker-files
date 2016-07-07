@@ -34,10 +34,12 @@ RUN \
         gconf-service \
         hicolor-icon-theme \
         qt5-default \
+        python-minimal \
     && wget -O - "https://www.dropbox.com/download?plat=lnx.x86_64" \
         | tar xzf - --directory=$HOME \
-    && wget -O $HOME/.dropbox-dist/dropbox.py "https://www.dropbox.com/download?dl=packages/dropbox.py" \
-    && chown -R $DOCKER_USER:$DOCKER_USER $HOME/.dropbox-dist \ 
+    && wget -O $HOME/.dropbox-dist/dropboxctl "https://www.dropbox.com/download?dl=packages/dropbox.py" \
+    && chown -R $DOCKER_USER:$DOCKER_USER $HOME/.dropbox-dist \
+    && chmod u+x $HOME/.dropbox-dist/dropboxctl \
     && rm -rf /var/lib/apt/lists/*
 
 WORKDIR $DOCKER_USER_HOME
