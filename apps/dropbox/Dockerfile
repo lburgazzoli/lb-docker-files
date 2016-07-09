@@ -1,5 +1,32 @@
-
-FROM lburgazzoli/ubuntu-ui:16.04
+#
+#  docker build \
+#      --tag="lburgazzoli/app-dropbox" \
+#      --build-arg DOCKER_USER=$LOGNAME \
+#      --build-arg DOCKER_USER_GID=$(id $LOGNAME -g) \
+#      --build-arg DOCKER_USER_UID=$(id $LOGNAME -u) \
+#     .  
+#  
+#  docker run \
+#      -d \
+#      -u ${DOCKER_USER} \
+#      --net host \
+#      --name ${DOCKER_NAME} \
+#      --log-driver=syslog \
+#      -e DISPLAY=unix${DISPLAY} \
+#      -e QT_XKB_CONFIG_ROOT=/usr/share/X11/xkb \
+#      -e QT_STYLE_OVERRIDE="" \
+#      -v /etc/localtime:/etc/localtime:ro \
+#      -v /etc/machine-id:/etc/machine-id:ro \
+#      -v /tmp/.X11-unix:/tmp/.X11-unix \
+#      -v /var/run/dbus:/var/run/dbus \
+#      -v /dev/shm:/dev/shm \
+#      -v $HOME/.dropbox:/home/$DOCKER_USER/.dropbox \
+#      -v $HOME/.dropbox-dist:/home/$DOCKER_USER/.dropbox-dist \
+#      -v $HOME/doc/Dropbox:/home/$DOCKER_USER/doc/Dropbox \
+#      ${DOCKER_IMAGE} \
+#      /home/$DOCKER_USER/.dropbox-dist/dropboxd
+#
+FROM lburgazzoli/fedora:24
 MAINTAINER lburgazzoli
 
 ARG DOCKER_USER
@@ -21,22 +48,20 @@ RUN \
         --gid $DOCKER_USER_UID \
         --shell /usr/sbin/nologin \
         $DOCKER_USER \
-    && apt-get update \
-    && apt-get install -y --no-install-recommends \
-        libxxf86vm1 \
-        libxslt1.1 \
-        libappindicator1 \
-        libx11-6 \
-        libx11-xcb1 \
-        libxcb-xkb1 \
-        libnotify4 \
+    && dnf -y install \
+        libxslt \
+        libappindicator \
+        libX11 \
+        libSM \
+        libICE \
+        libxcb \
+        libxkbcommon-x11 \
+        libnotify \
         xdg-utils \
-        fonts-liberation \
-        gconf-service \
+        liberation-fonts \
         hicolor-icon-theme \
-        qt5-default \
         python \
-    && rm -rf /var/lib/apt/lists/*
+    && dnf -y clean all
 
 WORKDIR $DOCKER_USER_HOME
 USER $DOCKER_USER
