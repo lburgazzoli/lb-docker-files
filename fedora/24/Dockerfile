@@ -1,15 +1,14 @@
 ############################################################
-# Fedora 23
+# Fedora 24
 ############################################################
 
 FROM fedora:24
 MAINTAINER lburgazzoli
 
 RUN \
-    dnf --assumeyes update \
-    && dnf --assumeyes install \
+    dnf -y -v update \
+    && dnf -y -v install \
         curl \
         unzip \
         wget \
-    && dnf --assumeyes clean all \
-    && dnf --assumeyes autoremove
+    && dnf -y -v clean all
