@@ -21,6 +21,7 @@ RUN \
         --gid $DOCKER_USER_UID \
         --shell /usr/sbin/nologin \
         $DOCKER_USER \
+    && add-apt-repository ppa:ubuntuhandbook1/corebird \
     && apt-get update -y \
     && apt-get upgrade -y --no-install-recommends \
     && apt-get install -y --no-install-recommends \
