@@ -27,6 +27,7 @@ RUN \
     && apt-get install -y --no-install-recommends \
         dbus-x11 \
         corebird \
+        net-tools \
     && rm -rf /var/lib/apt/lists/*
 
 WORKDIR $DOCKER_USER_HOME
