@@ -26,7 +26,7 @@
 #      ${DOCKER_IMAGE} \
 #      /home/$DOCKER_USER/.dropbox-dist/dropboxd
 #
-FROM lburgazzoli/fedora:24
+FROM lburgazzoli/ubuntu-ui:16.04
 MAINTAINER lburgazzoli
 
 ARG DOCKER_USER
@@ -48,20 +48,22 @@ RUN \
         --gid $DOCKER_USER_UID \
         --shell /usr/sbin/nologin \
         $DOCKER_USER \
-    && dnf -y install \
-        libxslt \
-        libappindicator \
-        libX11 \
+    && apt-get update \
+    && apt-get install -y --no-install-recommends \
+        libxxf86vm1 \
+        libxslt1.1 \
+        libappindicator1 \
+        libx11-6 \
+        libx11-xcb1 \
         libSM \
         libICE \
-        libxcb \
-        libxkbcommon-x11 \
-        libnotify \
+        libxcb-xkb1 \
+        libnotify4 \
         xdg-utils \
-        liberation-fonts \
+        fonts-liberation \
         hicolor-icon-theme \
         python \
-    && dnf -y clean all
+    && rm -rf /var/lib/apt/lists/*
 
 WORKDIR $DOCKER_USER_HOME
 USER $DOCKER_USER
