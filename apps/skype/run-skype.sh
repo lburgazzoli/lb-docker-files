@@ -1,6 +1,5 @@
-#!/usr/bin/bash
+#!/bin/bash
 
 /usr/bin/skypeforlinux
 
-wait $!
-
+wait

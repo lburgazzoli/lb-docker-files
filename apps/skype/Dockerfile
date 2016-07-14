@@ -53,4 +53,4 @@ RUN \
 
 WORKDIR $DOCKER_USER_HOME
 USER $DOCKER_USER
-CMD /usr/bin/run-skype.sh
+CMD ["/usr/bin/run-skype.sh"]
