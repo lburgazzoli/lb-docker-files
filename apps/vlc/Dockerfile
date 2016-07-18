@@ -20,3 +20,4 @@ RUN apt-get update \
 
 WORKDIR $DOCKER_USER_HOME
 USER $DOCKER_USER
+CMD [ "vlc" ]
