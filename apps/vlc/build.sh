@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+
 sudo docker build \
     --tag="lburgazzoli/app-vlc" \
     --build-arg DOCKER_USER=$LOGNAME \
