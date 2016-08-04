@@ -41,4 +41,10 @@ RUN \
         fonts-noto \
         numix-gtk-theme \
         dbus-x11 \
+        hunspell-en-us \
+        libnotify4 \
+        python \
+        gvfs-bin \
+        apt-transport-https \
+        gir1.2-gnomekeyring-1.0 \
     && rm -rf /var/lib/apt/lists/*

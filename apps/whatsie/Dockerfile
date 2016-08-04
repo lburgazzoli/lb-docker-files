@@ -10,10 +10,8 @@ ARG APP_VERSION
 ENV DOCKER_USER_HOME /home/$DOCKER_USER
 ENV HOME             $DOCKER_USER_HOME
 
-RUN \
-    apt-get update \
-    && apt-get install apt-transport-https \
-    && apt-key adv --keyserver pool.sks-keyservers.net --recv-keys 1537994D \
+RUN gpg --keyserver pool.sks-keyservers.net --recv-keys 1537994D \
+    && gpg --export --armor 1537994D | apt-key add - \
     && echo "deb https://dl.bintray.com/aluxian/deb stable main" > /etc/apt/sources.list.d/whatsie.list \
     && apt-get update \
     && apt-get install -y --no-install-recommends \        

@@ -18,14 +18,6 @@ RUN \
     && locale-gen en_US.utf8 \
     && /usr/sbin/update-locale LANG=en_US.UTF-8 \
     && echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen \
-    && apt-get update \
-    && apt-get install -y --no-install-recommends \
-        hunspell-en-us \
-        libnotify4 \
-        python \
-        gvfs-bin \
-        apt-transport-https \
-        gir1.2-gnomekeyring-1.0 \
     && curl -sSL https://update.gitter.im/linux64/gitter_${APP_VERSION}_amd64.deb > /tmp/gitter.deb \
     && dpkg -i /tmp/gitter.deb \
     && rm -rf /tmp/gitter.deb \

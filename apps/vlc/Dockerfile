@@ -1,4 +1,4 @@
-FROM lburgazzoli/ubuntu-ui:16.04
+FROM lburgazzoli/ubuntu-ui-qt5:16.04
 MAINTAINER lburgazzoli
 
 ARG DOCKER_USER

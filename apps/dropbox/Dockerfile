@@ -52,16 +52,8 @@ RUN \
     && apt-get install -y --no-install-recommends \
         libxxf86vm1 \
         libxslt1.1 \
-        libappindicator1 \
-        libx11-6 \
-        libx11-xcb1 \
         libSM \
         libICE \
-        libxcb-xkb1 \
-        libnotify4 \
-        xdg-utils \
-        fonts-liberation \
-        hicolor-icon-theme \
         python \
     && rm -rf /var/lib/apt/lists/*
 

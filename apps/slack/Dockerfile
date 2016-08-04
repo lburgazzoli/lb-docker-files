@@ -16,14 +16,6 @@ RUN \
     echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen \
     && locale-gen en_US.utf8 \
     && /usr/sbin/update-locale LANG=en_US.UTF-8 \
-    && apt-get update \
-    && apt-get install -y --no-install-recommends \
-        hunspell-en-us \
-        libnotify4 \
-        python \
-        gvfs-bin \
-        apt-transport-https \
-        gir1.2-gnomekeyring-1.0 \
     && curl -sSL https://slack-ssb-updates.global.ssl.fastly.net/linux_releases/slack-desktop-${APP_VERSION}-amd64.deb > /tmp/slack.deb \
     && dpkg -i /tmp/slack.deb \
     && rm -rf /tmp/slack.deb \
