@@ -13,11 +13,11 @@ ENV HOME             $DOCKER_USER_HOME
 
 RUN \
     mkdir /opt/${APP_NAME} \
-    && wget https://github.com/imprecision/franz-app/releases/download/${APP_VERSION}/Franz-linux-x64-${APP_VERSION}.tgz -q -O - \
+    && wget https://github.com/meetfranz/franz-app/releases/download/${APP_VERSION}/Franz-linux-x64-${APP_VERSION}.tgz -q -O - \
         | tar -xvzf - \
             --directory /opt/${APP_NAME} \
             --strip-components=1 
 
 WORKDIR $DOCKER_USER_HOME
 USER $DOCKER_USER
-CMD [ "/opt/franz/franz" ]
+CMD [ "/opt/franz/Franz" ]
