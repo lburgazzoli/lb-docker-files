@@ -1,11 +1,11 @@
 ############################################################
-# Debian Jessie / rust 1.5.0
+# Debian Jessie / rust 1.11.0
 ############################################################
 
 FROM lburgazzoli/debian-jessie-dev
 MAINTAINER lburgazzoli
 
-ENV RUST_VERSION=1.5.0
+ENV RUST_VERSION=1.11.0
 ENV RUST_HOME=/opt/rust
 ENV PATH $RUST_HOME/bin:$PATH
 
