@@ -1,4 +1,4 @@
-FROM lburgazzoli/ubuntu-ui:16.04
+FROM lburgazzoli/ubuntu-ui:16.10
 MAINTAINER lburgazzoli
 
 ARG DOCKER_USER
@@ -17,7 +17,7 @@ RUN \
     && apt-key adv \
         --keyserver pool.sks-keyservers.net \
         --recv-keys 11E9DE8848F2B65222AA75B8D1820DB22A11534E \
-    && echo "deb https://weechat.org/ubuntu xenial main" > /etc/apt/sources.list.d/weechat.list \
+    && echo "deb https://weechat.org/ubuntu yakkety main" > /etc/apt/sources.list.d/weechat.list \
     && apt-get update \
     && apt-get install -y --no-install-recommends \
         libnotify-bin \

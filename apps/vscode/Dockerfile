@@ -1,5 +1,5 @@
 
-FROM lburgazzoli/ubuntu-ui:16.04
+FROM lburgazzoli/ubuntu-ui:16.10
 MAINTAINER lburgazzoli
 
 ARG APP_NAME

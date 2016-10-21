@@ -1,16 +1,17 @@
 ############################################################
-# Fedora 24
+# Ubtuntu 16.10
 ############################################################
 
-FROM fedora:24
+FROM ubuntu:16.10
 MAINTAINER lburgazzoli
 
 ARG DOCKER_USER
 ARG DOCKER_USER_GID
 ARG DOCKER_USER_UID
 
-ENV DOCKER_USER_HOME  /home/$DOCKER_USER
-ENV HOME              $DOCKER_USER_HOME
+ENV DOCKER_USER_HOME /home/$DOCKER_USER
+ENV HOME             $DOCKER_USER_HOME
+
 RUN \
     groupadd \
         --gid $DOCKER_USER_GID \
@@ -22,12 +23,12 @@ RUN \
         --gid $DOCKER_USER_UID \
         --shell /usr/sbin/nologin \
         $DOCKER_USER \
-    && rm -f \
-        /etc/yum.repos.d/fedora-cisco-openh264.repo \
-        /etc/yum.repos.d/fedora-updates-testing.repo \
-    && dnf --assumeyes --refresh --verbose --allowerasing update \
-    && dnf --assumeyes --verbose --allowerasing install \
+    && apt-get update \
+    && apt-get -y upgrade \
+    && apt-get install -y --no-install-recommends \
+        ca-certificates \
+        software-properties-common \
         curl \
         unzip \
         wget \
-    && dnf --assumeyes --verbose clean all
+    && rm -rf /var/lib/apt/lists/*
