@@ -1,5 +1,5 @@
 
-FROM lburgazzoli/ubuntu-ui:16.04
+FROM lburgazzoli/alpine:edge
 MAINTAINER lburgazzoli
 
 ARG DOCKER_USER
@@ -9,13 +9,7 @@ ARG DOCKER_USER_UID
 ENV DOCKER_USER_HOME /home/$DOCKER_USER
 ENV HOME             $DOCKER_USER_HOME
 
-RUN \
-    add-apt-repository ppa:ubuntuhandbook1/corebird \
-    && apt-get update -y \
-    && apt-get upgrade -y --no-install-recommends \
-    && apt-get install -y --no-install-recommends \
-        corebird \
-    && rm -rf /var/lib/apt/lists/*
+RUN apk add --no-cache corebird corebird-lang
 
 WORKDIR $DOCKER_USER_HOME
 USER $DOCKER_USER
