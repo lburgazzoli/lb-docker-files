@@ -10,10 +10,15 @@ ENV DOCKER_USER_HOME /home/$DOCKER_USER
 ENV HOME             $DOCKER_USER_HOME
 
 RUN \
-    wget -O /tmp/skype.deb https://repo.skype.com/latest/skypeforlinux-64-alpha.deb \
-    && dpkg -i /tmp/skype.deb \
-    && rm /tmp/skype.deb
+    curl https://repo.skype.com/data/SKYPE-GPG-KEY | apt-key add - \
+    && echo "deb [arch=amd64] https://repo.skype.com/deb stable main" > /etc/apt/sources.list.d/skype-stable.list \
+    && apt-get update \
+    && apt-get install -y --no-install-recommends \
+        apt-utils \
+        skypeforlinux \
+    && rm -rf /var/lib/apt/lists/*
+
 
 WORKDIR $DOCKER_USER_HOME
 USER $DOCKER_USER
-CMD [  "/usr/share/skypeforlinux/skypeforlinux" , "--executed-from=$HOME" ]
+CMD [ "/usr/share/skypeforlinux/skypeforlinux", "--executed-from=$HOME" ]

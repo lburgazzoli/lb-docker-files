@@ -1,4 +1,4 @@
-FROM openjdk:8-jdk-alpine
+FROM jboss/base-jdk:8
 
 ARG APP_VERSION
 
@@ -10,22 +10,18 @@ ENV ACTIVEMQ_STOMP=61613
 ENV ACTIVEMQ_MQTT=1883 
 ENV ACTIVEMQ_WS=61614 
 ENV ACTIVEMQ_UI=8161
-ENV ACTIVEMQ_USER activemq
-ENV ACTIVEMQ_HOME /opt/activemq
 
-RUN \
-    mkdir -p /opt \
-    && addgroup -S $ACTIVEMQ_USER \
-    && adduser -S -H $ACTIVEMQ_USER \
-    && apk add --no-cache curl \
-    && curl -s -S https://archive.apache.org/dist/activemq/$ACTIVEMQ_VERSION/apache-activemq-${ACTIVEMQ_VERSION}-bin.tar.gz \
-        | tar xvzf - \
-            -C /opt \
-    && mv /opt/apache-activemq-${ACTIVEMQ_VERSION} ${ACTIVEMQ_HOME} \
-    && chown -R $ACTIVEMQ_USER:$ACTIVEMQ_USER $ACTIVEMQ_HOME \
-    && apk del curl
+ENV ACTIVEMQ_HOME /opt/jboss/activemq
 
-USER $ACTIVEMQ_USER
+RUN set -x \
+    && mkdir -p $ACTIVEMQ_HOME \
+    && curl -s -S https://archive.apache.org/dist/activemq/$ACTIVEMQ_VERSION/$ACTIVEMQ-bin.tar.gz \
+        | tar xvz \
+            --strip-components=1 \
+            --directory ${ACTIVEMQ_HOME} \
+    && chown -R jboss:jboss ${ACTIVEMQ_HOME}
+
+USER jboss
 
 WORKDIR $ACTIVEMQ_HOME
 
