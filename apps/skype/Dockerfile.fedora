@@ -10,9 +10,13 @@ ENV DOCKER_USER_HOME /home/$DOCKER_USER
 ENV HOME             $DOCKER_USER_HOME
 
 RUN \
-    dnf install dnf-plugins-core  -y \
-    && dnf config-manager --add-repo https://repo.skype.com/data/skype-stable.repo \
-    && dnf install skypeforlinux -y \
+    dnf config-manager \
+        --add-repo https://repo.skype.com/data/skype-stable.repo \
+    && dnf --assumeyes install \
+        google-noto-serif-fonts \
+        google-noto-mono-fonts \
+        google-noto-sans-fonts \
+        skypeforlinux \
     && dnf clean all
 
 WORKDIR $DOCKER_USER_HOME
