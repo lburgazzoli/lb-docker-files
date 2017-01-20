@@ -1,5 +1,5 @@
 
-FROM lburgazzoli/ubuntu-ui:16.10
+FROM lburgazzoli/fedora-ui:25
 MAINTAINER lburgazzoli
 
 ARG DOCKER_USER

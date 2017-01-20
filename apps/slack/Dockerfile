@@ -1,5 +1,5 @@
 
-FROM lburgazzoli/ubuntu-ui:16.10
+FROM lburgazzoli/fedora-ui:25
 MAINTAINER lburgazzoli
 
 ARG DOCKER_USER
@@ -13,13 +13,17 @@ ENV LC_ALL           en_US.UTF-8
 ENV LANG             en_US.UTF-8
 
 RUN \
-    echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen \
-    && locale-gen en_US.utf8 \
-    && /usr/sbin/update-locale LANG=en_US.UTF-8 \
-    && curl -sSL https://slack-ssb-updates.global.ssl.fastly.net/linux_releases/slack-desktop-${APP_VERSION}-amd64.deb > /tmp/slack.deb \
-    && dpkg -i /tmp/slack.deb \
-    && rm -rf /tmp/slack.deb \
-    && rm -rf /var/lib/apt/lists/*
+    curl -sSL https://downloads.slack-edge.com/linux_releases/slack-${APP_VERSION}-0.1.fc21.x86_64.rpm > /tmp/slack.rpm \
+    && dnf --assumeyes install \
+        libXtst \
+        GConf2 \
+        alsa-lib \
+        google-noto-serif-fonts \
+        google-noto-mono-fonts \
+        google-noto-sans-fonts \
+    && dnf --assumeyes install /tmp/slack.rpm \
+    && rm -rf /tmp/slack.rpm \
+    && dnf clean all
 
 WORKDIR $DOCKER_USER_HOME
 USER $DOCKER_USER

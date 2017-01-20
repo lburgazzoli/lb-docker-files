@@ -32,4 +32,7 @@ RUN \
         curl \
         unzip \
         wget \
+        tar \
+        bzip2 \
+        xz \
     && dnf --assumeyes --verbose clean all

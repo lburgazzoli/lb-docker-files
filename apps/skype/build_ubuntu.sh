@@ -2,6 +2,7 @@
 
 
 sudo docker build \
+    --file=./Dockerfile.ubuntu \
     --tag="lburgazzoli/app-skype" \
     --build-arg DOCKER_USER=$LOGNAME \
     --build-arg DOCKER_USER_GID=$(id $LOGNAME -g) \

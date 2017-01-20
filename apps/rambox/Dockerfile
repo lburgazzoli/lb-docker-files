@@ -5,14 +5,16 @@ MAINTAINER lburgazzoli
 ARG DOCKER_USER
 ARG DOCKER_USER_GID
 ARG DOCKER_USER_UID
-ARG APP_VERSION
-ARG APP_NAME
+ARG APP_URL
 
 ENV DOCKER_USER_HOME /home/$DOCKER_USER
 ENV HOME             $DOCKER_USER_HOME
+ENV LC_ALL           en_US.UTF-8
+ENV LANG             en_US.UTF-8
 
 RUN \
-    dnf --assumeyes install \
+    curl -sSL $APP_URL > /tmp/app.rpm \
+    && dnf --assumeyes install \
         libXtst \
         libXScrnSaver \
         GConf2 \
@@ -20,12 +22,10 @@ RUN \
         google-noto-serif-fonts \
         google-noto-mono-fonts \
         google-noto-sans-fonts \
-    && mkdir /opt/${APP_NAME} \
-    && wget https://github.com/meetfranz/franz-app/releases/download/${APP_VERSION}/Franz-linux-x64-${APP_VERSION}.tgz -q -O - \
-        | tar -xvzf - \
-            --directory /opt/${APP_NAME} \
-            --strip-components=1 
+    && dnf --assumeyes install /tmp/app.rpm \
+    && rm -rf /tmp/app.rpm \
+    && dnf clean all
 
 WORKDIR $DOCKER_USER_HOME
 USER $DOCKER_USER
-CMD [ "/opt/franz/Franz" ]
+CMD [ "/opt/Rambox/Rambox" ]
