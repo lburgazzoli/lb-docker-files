@@ -1,5 +1,5 @@
 
-FROM lburgazzoli/ubuntu-ui-qt5:16.10
+FROM lburgazzoli/fedora-ui:25
 MAINTAINER lburgazzoli
 
 ARG DOCKER_USER
@@ -12,14 +12,14 @@ ENV LC_ALL           en_US.UTF-8
 ENV LANG             en_US.UTF-8
 
 RUN \
-    echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen \
-    && locale-gen en_US.utf8 \
-    && /usr/sbin/update-locale LANG=en_US.UTF-8 \
-    && apt-add-repository -y ppa:rael-gc/scudcloud \
-    && echo ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true | debconf-set-selections \
-    && apt-get update \
-    && apt-get install -y scudcloud \
-    && rm -rf /var/lib/apt/lists/*
+    dnf --assumeyes install \
+        scudcloud \
+        dbus \
+        dbus-x11 \
+        google-noto-serif-fonts \
+        google-noto-mono-fonts \
+        google-noto-sans-fonts \
+    && dnf clean all
 
 WORKDIR $DOCKER_USER_HOME
 USER $DOCKER_USER
