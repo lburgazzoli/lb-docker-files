@@ -11,7 +11,12 @@ ENV HOME             $DOCKER_USER_HOME
 
 RUN \
     dnf --assumeyes install \
+        https://raw.githubusercontent.com/UnitedRPMs/unitedrpms/master/RPM/unitedrpms-25-1.noarch.rpm \
+    && dnf --assumeyes install \
         chromium \
+        chromium-pepper-flash \
+        chromium-freeworld \
+        chromium-widevine \
     && dnf clean all
 
 WORKDIR $DOCKER_USER_HOME

@@ -1,0 +1,34 @@
+
+FROM lburgazzoli/alpine:edge
+MAINTAINER lburgazzoli
+
+ARG DOCKER_USER
+ARG DOCKER_USER_GID
+ARG DOCKER_USER_UID
+
+ENV DOCKER_USER_HOME   /home/$DOCKER_USER
+ENV HOME               $DOCKER_USER_HOME
+ENV TRAVIS_CONFIG_PATH /travis
+ENV TRAVIS_REPO_PATH   /repo
+
+RUN \
+    apk add --no-cache \
+        ruby \
+        ruby-io-console \
+        ruby-json git \
+    && apk add --no-cache --virtual build_deps \
+        build-base \
+        ruby-dev \
+        libc-dev \
+        libffi-dev \
+        linux-headers \
+    && gem install travis --no-rdoc --no-ri \
+    && apk del \
+        build_deps        
+
+USER $DOCKER_USER
+VOLUME $TRAVIS_CONFIG_PATH
+VOLUME $TRAVIS_REPO_PATH
+WORKDIR $TRAVIS_REPO_PATH
+
+#ENTRYPOINT [ "/usr/bin/travis" ]
