@@ -1,3 +1,4 @@
+
 FROM lburgazzoli/fedora-ui:25
 MAINTAINER lburgazzoli
 
@@ -8,13 +9,21 @@ ARG DOCKER_USER_UID
 ENV DOCKER_USER_HOME /home/$DOCKER_USER
 ENV HOME             $DOCKER_USER_HOME
 
+ADD hipchat.repo /etc/yum.repos.d/hipchat.repo
+
 RUN \
     dnf --assumeyes install \
-        https://raw.githubusercontent.com/UnitedRPMs/unitedrpms/master/RPM/unitedrpms-25-1.noarch.rpm \
-    && dnf --assumeyes install \
-        vlc \
+        alsa-lib \
+        alsa-utils \
+        google-noto-mono-fonts \
+        google-noto-sans-fonts \
+        google-noto-serif-fonts \
+        hipchat4 \
+        xterm \
     && dnf clean all
 
 WORKDIR $DOCKER_USER_HOME
 USER $DOCKER_USER
-CMD [ "vlc" ]
+
+CMD [ "hipchat4" ]
+
