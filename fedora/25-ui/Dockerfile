@@ -15,4 +15,7 @@ ENV HOME              $DOCKER_USER_HOME
 RUN \
     dnf --assumeyes --verbose --allowerasing install \
         numix-gtk-theme \
+        google-noto-serif-fonts \
+        google-noto-mono-fonts \
+        google-noto-sans-fonts \
     && dnf --assumeyes --verbose clean all
