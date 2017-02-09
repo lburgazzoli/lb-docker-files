@@ -1,5 +1,5 @@
 
-FROM lburgazzoli/alpine:edge
+FROM lburgazzoli/fedora-ui:25
 MAINTAINER lburgazzoli
 
 ARG DOCKER_USER
@@ -9,9 +9,14 @@ ARG DOCKER_USER_UID
 ENV DOCKER_USER_HOME /home/$DOCKER_USER
 ENV HOME             $DOCKER_USER_HOME
 
-RUN apk add --no-cache \
-    transmission-cli
+RUN \
+    dnf --assumeyes install \
+        transmission \
+        transmission-cli \
+        transmission-gtk \
+    && dnf clean all
 
 WORKDIR $DOCKER_USER_HOME
 USER $DOCKER_USER
-CMD [ "transmission-cli" ]
+
+CMD [ "transmission-gtk" ]
