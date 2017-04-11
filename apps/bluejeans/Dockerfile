@@ -5,7 +5,7 @@ MAINTAINER lburgazzoli
 ARG DOCKER_USER
 ARG DOCKER_USER_GID
 ARG DOCKER_USER_UID
-ARG APP_VERSION
+ARG APP_DOWNLOAD_URL
 
 ENV DOCKER_USER_HOME /home/$DOCKER_USER
 ENV HOME             $DOCKER_USER_HOME
@@ -15,15 +15,16 @@ ENV LANG             en_US.UTF-8
 RUN \
     dnf --assumeyes install \
         libXtst \
+        libnotify \
         GConf2 \
         alsa-lib \
         google-noto-serif-fonts \
         google-noto-mono-fonts \
         google-noto-sans-fonts \
     && dnf --assumeyes install \
-        https://downloads.slack-edge.com/linux_releases/slack-${APP_VERSION}-0.1.fc21.x86_64.rpm > /tmp/slack.rpm \
+        ${APP_DOWNLOAD_URL} \
     && dnf clean all
 
 WORKDIR $DOCKER_USER_HOME
 USER $DOCKER_USER
-CMD [ "/usr/bin/slack" ]
+CMD [ "/usr/bin/bluejeans" ]

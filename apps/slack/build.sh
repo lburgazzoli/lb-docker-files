@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-APP_VERSION="2.4.2"
+APP_VERSION="2.5.2"
 
 sudo docker build \
     --tag="lburgazzoli/app-slack" \
