@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 
-sudo docker build \
+docker build \
     --tag="lburgazzoli/app-peek" \
     --build-arg DOCKER_USER=$LOGNAME \
     --build-arg DOCKER_USER_GID=$(id $LOGNAME -g) \

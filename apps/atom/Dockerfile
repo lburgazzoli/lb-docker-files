@@ -18,6 +18,10 @@ RUN \
         GConf2 \
         alsa-lib \
         alsa-utils \
+        make \
+        automake \
+        gcc \
+        gcc-c++ \
     && mkdir /opt/${APP_NAME} \
     && curl -L ${APP_URL} \
         | tar -xzf - \
