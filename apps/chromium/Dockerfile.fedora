@@ -11,7 +11,7 @@ ENV HOME             $DOCKER_USER_HOME
 
 RUN \
     dnf --assumeyes install \
-        https://raw.githubusercontent.com/UnitedRPMs/unitedrpms/master/RPM/unitedrpms-25-1.noarch.rpm \
+        https://github.com/UnitedRPMs/unitedrpms/releases/download/3/unitedrpms-$(rpm -E %fedora)-3.fc$(rpm -E %fedora).noarch.rpm \
     && dnf --assumeyes install \
         chromium \
         chromium-pepper-flash \

@@ -22,13 +22,23 @@ RUN \
         automake \
         gcc \
         gcc-c++ \
+        git-core \
+        git \
+        gnupg \
+        gnupg2 \
+        findutils \
+    && ln -s /usr/share/git-core/contrib/completion/git-prompt.sh /etc/profile.d \
     && mkdir /opt/${APP_NAME} \
     && curl -L ${APP_URL} \
         | tar -xzf - \
             --directory /opt/${APP_NAME} \
-            --strip-components=1 
+            --strip-components=1
+
+ADD atom-run.sh /opt/atom/atom-run.sh
+RUN chmod ugo+x /opt/atom/atom-run.sh
 
 WORKDIR $DOCKER_USER_HOME
 USER $DOCKER_USER
 
-ENTRYPOINT [  "/opt/atom/atom" ]
+ENTRYPOINT [ "/opt/atom/atom-run.sh" ]
+
