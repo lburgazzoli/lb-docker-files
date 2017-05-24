@@ -17,12 +17,27 @@ RUN \
         GConf2 \
         alsa-lib \
         alsa-utils \
+        make \
+        automake \
+        gcc \
+        gcc-c++ \
+        git-core \
+        git \
+        gnupg \
+        gnupg2 \
+        findutils \
+    && ln -s /usr/share/git-core/contrib/completion/git-prompt.sh /etc/profile.d \
     && mkdir /opt/${APP_NAME} \
     && curl -L https://go.microsoft.com/fwlink/?LinkID=620884 \
         | tar -xzf - \
             --directory /opt/${APP_NAME} \
             --strip-components=1 
 
+ADD vscode-run.sh /opt/vscode/vscode-run.sh
+RUN chmod ugo+x /opt/vscode/vscode-run.sh
+
 WORKDIR $DOCKER_USER_HOME
 USER $DOCKER_USER
-ENTRYPOINT [  "/opt/vscode/code" ]
+
+ENTRYPOINT [ "/opt/vscode/vscode-run.sh" ]
+

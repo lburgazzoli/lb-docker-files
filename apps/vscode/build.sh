@@ -1,6 +1,13 @@
 #!/usr/bin/env bash
 
 APP_NAME=vscode
+APP_GROUP=lburgazzoli
+
+if [ "$#" -eq 1 ]; then
+    if [[ "$1" == "-f" ]]; then
+    docker image rm ${APP_GROUP}/app-${APP_NAME}
+    fi
+fi
 
 docker build \
     --tag="lburgazzoli/app-${APP_NAME}" \
