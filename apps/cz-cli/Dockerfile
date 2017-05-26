@@ -19,10 +19,11 @@ RUN \
         bash \
         git \
         gnupg \
+        vim \
     && npm install -g \
-        commitizen
+        commitizen \
+        cz-conventional-changelog
 
 WORKDIR $HOME
 USER $DOCKER_USER
 
-ENTRYPOINT ["cz"]
