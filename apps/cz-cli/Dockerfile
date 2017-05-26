@@ -24,7 +24,8 @@ RUN \
         pinentry-gtk \
     && npm install -g \
         commitizen \
-        cz-conventional-changelog
+        cz-conventional-changelog \
+        cz-jira-smart-commit
 
 WORKDIR $HOME
 USER $DOCKER_USER
