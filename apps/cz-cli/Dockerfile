@@ -20,9 +20,9 @@ RUN \
         git \
         gnupg \
     && npm install -g \
-        git-bc
+        commitizen
 
 WORKDIR $HOME
 USER $DOCKER_USER
 
-ENTRYPOINT ["git-bc"]
+ENTRYPOINT ["cz"]

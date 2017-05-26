@@ -1,5 +1,5 @@
 
-FROM lburgazzoli/alpine:edge
+FROM lburgazzoli/alpine:3.6
 MAINTAINER lburgazzoli
 
 ARG DOCKER_USER

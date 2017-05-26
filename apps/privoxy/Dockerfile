@@ -1,4 +1,4 @@
-FROM alpine:edge
+FROM alpine:3.6
 MAINTAINER lburgazzoli
 
 RUN apk --no-cache add privoxy

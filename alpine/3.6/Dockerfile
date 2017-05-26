@@ -1,4 +1,8 @@
-FROM node:7.10-alpine
+############################################################
+# 
+############################################################
+
+FROM alpine:3.6
 MAINTAINER lburgazzoli
 
 ARG DOCKER_USER
@@ -16,13 +20,7 @@ RUN \
         -D \
         $DOCKER_USER \
     && apk add --no-cache \
-        bash \
-        git \
-        gnupg \
-    && npm install -g \
-        git-bc
-
-WORKDIR $HOME
-USER $DOCKER_USER
-
-ENTRYPOINT ["git-bc"]
+        curl \
+        unzip \
+        wget \
+        bash
