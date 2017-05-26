@@ -20,6 +20,8 @@ RUN \
         git \
         gnupg \
         vim \
+        pinentry \
+        pinentry-gtk \
     && npm install -g \
         commitizen \
         cz-conventional-changelog
