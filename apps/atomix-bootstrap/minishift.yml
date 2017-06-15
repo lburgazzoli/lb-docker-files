@@ -1,0 +1,71 @@
+---
+apiVersion: "v1"
+kind: "List"
+items:
+- apiVersion: v1
+  kind: ConfigMap
+  apiVersion: v1
+  metadata:
+    name: atomix-bootstrap
+  data:
+    atomix-bootstrap.properties: |
+      storage.level=MEMORY
+- apiVersion: v1
+  kind: DeploymentConfig
+  metadata:
+    labels:
+      app: atomix
+    name: atomix-boostrap
+  spec:
+    replicas: 1
+    selector:
+      app: atomix-boostrap
+      deploymentconfig: atomix-boostrap
+    template:
+      metadata:
+        labels:
+          app: atomix-boostrap
+          deploymentconfig: atomix-boostrap
+      spec:
+        containers:          
+        - name: atomix-boostrap
+          args:
+          - -config
+          - /etc/atomix/atomix-bootstrap.properties
+          image: lburgazzoli/app-atomix-boostrap:1.0.8
+          imagePullPolicy: IfNotPresent          
+          ports:
+            - containerPort: 8700
+              protocol: TCP
+          volumeMounts:
+            - name: atomix-bootstrap-config
+              mountPath: /etc/atomix
+              readOnly: true
+          env:
+            - name: ATOMIX_BOOTSTRAP_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: ATOMIX_BOOTSTRAP_HOST
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.podIP
+            - name: ATOMIX_BOOTSTRAP_PORT
+              value: "8700"
+        volumes:
+        - name: atomix-bootstrap-config
+          configMap:
+            name: atomix-bootstrap
+        restartPolicy: Always
+- apiVersion: "v1"
+  kind: "Service"
+  metadata:
+    name: "atomix-boostrap"
+  spec:
+    ports:
+    - name: "atomix"
+      port: 8700
+      protocol: "TCP"
+      targetPort: 8700
+    selector:
+      app: "atomix-boostrap"
