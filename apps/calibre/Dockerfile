@@ -12,9 +12,17 @@ RUN \
     dnf --assumeyes install \
         dbus \
         dbus-x11 \
-        calibre \
+        python \
+    && wget \
+        --no-verbose \
+        --output-document=- \
+        https://download.calibre-ebook.com/linux-installer.py \
+            | python \
+                -c "import sys; main=lambda x:sys.stderr.write('Download failed\n'); exec(sys.stdin.read()); main('/opt')" \
+    && dnf --assumeyes remove \
+        python \
     && dnf clean all
 
 WORKDIR $DOCKER_USER_HOME
 USER $DOCKER_USER
-CMD [ "calibre" ]
+CMD [ "/opt/calibre/calibre" ]
