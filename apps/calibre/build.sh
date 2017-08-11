@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 APP_GROUP=lburgazzoli
-APP_NAME=atom
+APP_NAME=calibre
 
 if [ "$#" -eq 1 ]; then
     if [[ "$1" == "-f" ]]; then
