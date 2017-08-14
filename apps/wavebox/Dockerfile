@@ -18,6 +18,7 @@ RUN \
         GConf2 \
         alsa-lib \
         alsa-utils \
+        procps-ng \
     && mkdir /opt/${APP_NAME} \
     && curl -L ${APP_URL} \
         | tar -xzf - \
