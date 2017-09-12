@@ -1,5 +1,5 @@
 
-FROM lburgazzoli/fedora-ui:25
+FROM lburgazzoli/fedora-ui:26
 MAINTAINER lburgazzoli
 
 ARG DOCKER_USER
