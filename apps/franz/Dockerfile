@@ -1,11 +1,11 @@
 
-FROM lburgazzoli/fedora-ui:25
+FROM lburgazzoli/fedora-ui:26
 MAINTAINER lburgazzoli
 
 ARG DOCKER_USER
 ARG DOCKER_USER_GID
 ARG DOCKER_USER_UID
-ARG APP_VERSION
+ARG APP_URL
 ARG APP_NAME
 
 ENV DOCKER_USER_HOME /home/$DOCKER_USER
@@ -13,6 +13,8 @@ ENV HOME             $DOCKER_USER_HOME
 
 RUN \
     dnf --assumeyes install \
+        fuse \
+        fuse-libs \
         libXtst \
         libXScrnSaver \
         GConf2 \
@@ -21,11 +23,14 @@ RUN \
         google-noto-mono-fonts \
         google-noto-sans-fonts \
     && mkdir /opt/${APP_NAME} \
-    && wget https://github.com/meetfranz/franz-app/releases/download/${APP_VERSION}/Franz-linux-x64-${APP_VERSION}.tgz -q -O - \
-        | tar -xvzf - \
-            --directory /opt/${APP_NAME} \
-            --strip-components=1 
+    && curl \
+        --location \
+        --output /opt/${APP_NAME}/${APP_NAME}.appimage \
+        ${APP_URL} \
+    && chmod +x /opt/${APP_NAME}/${APP_NAME}.appimage \
+    && cd /opt/${APP_NAME} \
+    && ./${APP_NAME}.appimage --appimage-extract
 
 WORKDIR $DOCKER_USER_HOME
 USER $DOCKER_USER
-CMD [ "/opt/franz/Franz" ]
+CMD [ "/opt/franz/franz" ]
