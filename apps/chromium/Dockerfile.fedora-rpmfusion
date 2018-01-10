@@ -11,12 +11,13 @@ ENV HOME             $DOCKER_USER_HOME
 
 RUN \
     dnf --assumeyes install \
-        transmission \
-        transmission-cli \
-        transmission-gtk \
+        https://github.com/UnitedRPMs/unitedrpms/releases/download/3/unitedrpms-$(rpm -E %fedora)-3.fc$(rpm -E %fedora).noarch.rpm \
+    && dnf --assumeyes install \
+        chromium \
+        chromium-pepper-flash \
+        chromium-freeworld \
+        chromium-widevine \
     && dnf clean all
 
 WORKDIR $DOCKER_USER_HOME
 USER $DOCKER_USER
-
-CMD [ "transmission-gtk" ]
