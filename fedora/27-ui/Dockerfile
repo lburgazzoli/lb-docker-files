@@ -14,6 +14,7 @@ ENV HOME              $DOCKER_USER_HOME
 
 RUN \
     dnf --assumeyes --verbose --allowerasing install \
+        mesa-libGL \
         numix-gtk-theme \
         google-noto-serif-fonts \
         google-noto-mono-fonts \
