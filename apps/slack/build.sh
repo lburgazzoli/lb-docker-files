@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
-APP_VERSION="2.5.2"
+APP_VERSION="3.1.1-0.1"
 
-sudo docker build \
+docker build \
     --tag="lburgazzoli/app-slack" \
     --build-arg DOCKER_USER=$LOGNAME \
     --build-arg DOCKER_USER_GID=$(id $LOGNAME -g) \

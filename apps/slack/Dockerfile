@@ -1,6 +1,5 @@
 
-FROM lburgazzoli/fedora-ui:25
-MAINTAINER lburgazzoli
+FROM lburgazzoli/fedora-ui:28
 
 ARG DOCKER_USER
 ARG DOCKER_USER_GID
@@ -21,7 +20,7 @@ RUN \
         google-noto-mono-fonts \
         google-noto-sans-fonts \
     && dnf --assumeyes install \
-        https://downloads.slack-edge.com/linux_releases/slack-${APP_VERSION}-0.1.fc21.x86_64.rpm > /tmp/slack.rpm \
+        https://downloads.slack-edge.com/linux_releases/slack-${APP_VERSION}.fc21.x86_64.rpm > /tmp/slack.rpm \
     && dnf clean all
 
 WORKDIR $DOCKER_USER_HOME
