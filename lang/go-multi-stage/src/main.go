@@ -1,6 +1,7 @@
 package main
 
 import (
+	"flag"
 	"fmt"
 	"log"
 	"net/http"
@@ -24,8 +25,15 @@ func handler(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
+	var bind string
+
+	flag.StringVar(&bind, "bind", ":9090", "bind")
+	flag.Parse()
+
+	fmt.Println("bind", bind)
+
 	http.HandleFunc("/", handler)
-	err := http.ListenAndServe(":9090", nil)
+	err := http.ListenAndServe(bind, nil)
 
 	if err != nil {
 		log.Fatal("ListenAndServe: ", err)
