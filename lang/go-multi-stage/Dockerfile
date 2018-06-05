@@ -3,7 +3,7 @@
 # BUILD
 ####################
 
-FROM golang:1.10 as go-build
+FROM golang:1.10 as builder
 ADD ./src /build
 RUN cd /build \
     && go get -d -v golang.org/x/net/html \
@@ -16,6 +16,6 @@ RUN cd /build \
 FROM alpine:latest  
 RUN mkdir /runtime \
     && apk --no-cache add ca-certificates
-COPY --from=go-build /build/app /runtime/app
+COPY --from=builder /build/app /runtime/app
 EXPOSE 9090
 ENTRYPOINT [ "/runtime/app" ]
