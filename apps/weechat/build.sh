@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-WEECHAT_VERSION=2.0.1
+WEECHAT_VERSION=2.1
 
 docker build \
     --tag="lburgazzoli/app-weechat" \
